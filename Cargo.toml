@@ -1,0 +1,8 @@
+[package]
+name = "YNABDoctorRust"
+version = "0.1.0"
+authors = ["Bastian Gruber <gruberbastian@me.com>"]
+edition = "2018"
+
+[dependencies]
+warp = "0.1.13"
