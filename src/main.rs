@@ -1,10 +1,12 @@
-extern crate warp;
+#![feature(proc_macro_hygiene, decl_macro)]
 
-use warp::Filter;
+#[macro_use] extern crate rocket;
+
+#[get("/")]
+fn index() -> &'static str {
+    "Hello, world!"
+}
 
 fn main() {
-    // Match any request and return hello world!
-    let routes = warp::any().map(|| "Hello, World!");
-
-    warp::serve(routes).run(([127, 0, 0, 1], 3030));
+    rocket::ignite().mount("/", routes![index]).launch();
 }
