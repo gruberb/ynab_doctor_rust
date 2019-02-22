@@ -1,12 +1,8 @@
-#![feature(proc_macro_hygiene, decl_macro)]
-
-#[macro_use] extern crate rocket;
-
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
+#![feature(async_await)]
 
 fn main() {
-    rocket::ignite().mount("/", routes![index]).launch();
+    let mut app = tide::App::new(());
+    app.at("/").get(async || "Hello, world!");
+
+    app.serve();
 }
